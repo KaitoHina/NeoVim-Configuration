@@ -4,16 +4,20 @@ local keymap = vim.keymap
 
 -- ---------- 插入模式 ---------- ---
 keymap.set("i", "jk", "<ESC>", { desc = "退出插入模式" })
+vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "向左縮排" })
 
 -- ---------- 視覺模式 ---------- ---
 -- 單行或多行移動
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "將選中行向下移動" })
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "將選中行向上移動" })
 -- 保持縮排模式
-keymap.set("v", "<", "<gv", { desc = "向左縮排" })
-keymap.set("v", ">", ">gv", { desc = "向右縮排" })
+keymap.set("v", "<S-Tab>", "<gv", { desc = "向左縮排" })
+keymap.set("v", "<Tab>", ">gv", { desc = "向右縮排" })
 
 -- ---------- 正常模式 ---------- ---
+-- 縮排
+vim.keymap.set("n", "<Tab>", "v><C-\\><CN>", { desc = "向右縮排" })
+vim.keymap.set("n", "<S-Tab>", "v<<C-\\><CN>", { desc = "向左縮排" })
 -- 視窗
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "水平新增視窗"})
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "垂直新增視窗"})
