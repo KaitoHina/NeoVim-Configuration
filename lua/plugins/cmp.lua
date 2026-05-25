@@ -22,15 +22,24 @@ return {
     end
 
     cmp.setup({
+      -- 定義補全選單的行為
+      completion = {
+          -- menu: display options in a menu
+          -- menuone: automatically select the first option of the menu
+          -- preview: automatically display the completion candiate as you navigate the menu
+          -- noselect: prevent neovim from automatically selecting a completion option while navigating the menu
+          competeopt = "menu,menuone,preview,noselect"
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body) -- 展開片段
         end,
       },
+      -- 定義鍵盤映射
       mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- 向上捲動檔案
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),  -- 向下捲動檔案
-        ["<C-e>"] = cmp.mapping.abort(),         -- 取消補全
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),           -- 向上捲動檔案
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),            -- 向下捲動檔案
+        ["<C-e>"] = cmp.mapping.abort(),                   -- 取消補全
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- 確認選擇
 
         -- Tab 鍵：智慧行為
