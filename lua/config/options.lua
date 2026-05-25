@@ -40,3 +40,14 @@ opt.sidescrolloff = 8   -- 游標左右至少保留8列
 
 -- 文件編碼
 opt.fileencoding = "uft-8"
+
+-- 終端窗口設定：打開終端時自動調整大小
+vim.api.nvim_create_augroup('TerminalSettings', { clear = true })
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = 'TerminalSettings',
+  pattern = '*', -- 所有终端窗口都生效
+  callback = function()
+    -- 设置终端窗口的大小。
+    vim.cmd('resize 8')
+  end,
+})
