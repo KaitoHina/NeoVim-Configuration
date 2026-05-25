@@ -29,9 +29,7 @@ return {
     -- ========== 自動設定其他透過 Mason 安裝的伺服器 ==========
     for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
       local server_config = { capabilities = capabilities }
-      if server == "jdtls" then
-          goto continue   -- 跳過 jdtls，由 nvim-jdtls 單獨處理
-      end
+      
       -- 如果是 clangd，加入特定參數並設定 on_new_config 以處理 compile_commands.json 的變化
       if server == "clangd" then
         -- 加入 clangd 特定參數，啟用背景索引和 clang-tidy 支持

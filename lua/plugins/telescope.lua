@@ -14,8 +14,12 @@ return {
     local keymap = vim.keymap  -- <leader> 是空格鍵，這裡用於觸發搜尋功能
     -- 依檔名搜尋檔案
     keymap.set('n', '<leader>ff', builtin.find_files, {desc = "[F]ind [F]iles"})
-    --依內容搜尋檔案
+    -- 依內容搜尋檔案
     keymap.set('n', '<leader>fg', builtin.live_grep, {desc = "[F]ind by [G]rep"})
+    -- 搜尋游標下的單字 (跨檔案)
+    keymap.set('n', '<leader>fw', builtin.grep_string, {desc = "[F]ind current [W]ord"})
+    -- 搜尋當前檔案內容
+    keymap.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find, {desc = "[F]ind word in current file"})
     -- 搜尋診斷資訊
     keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
     -- 恢復上一次的搜尋
