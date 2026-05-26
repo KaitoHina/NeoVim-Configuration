@@ -27,6 +27,15 @@ return {
 		vim.keymap.set("n", "<leader>ds", dap.continue, { desc = "[D]ebug [S]tart" })
 
 		-- set a vim motion to close the debugging ui
-		vim.keymap.set("n", "<leader>dc", dapui.close, { desc = "[D]ebug [C]lose" })
+		vim.keymap.set("n", "<leader>dc", dapui.close, { desc = "[D]ebug [C]lose UI" })
+
+    -- set a vim motion to open the debugging ui
+    vim.keymap.set("n", "<leader>do", dapui.open, { desc = "[D]ebug [O]en UI" })
+
+    -- set a vim motion to toggle the debugging ui
+    vim.keymap.set("n", "<leader>dT", dapui.toggle, { desc = "[D]ebug [T]oggle UI" })
+    
+    -- set a vim motion to step over the current line of code
+    vim.keymap.set("n", "<leader>dr", dap.run_to_cursor, { desc = "[D]ebug [R]un to Cursor" })
 	end,
 }
