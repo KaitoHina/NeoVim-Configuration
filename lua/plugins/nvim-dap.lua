@@ -28,10 +28,11 @@ return {
 		-- end
 
 		-- setup an event listener for when the debugger is exited
-		dap.listeners.before.event_exited.dapui_config = function()
-			dapui.close({})
-			dap.repl.close()
-		end
+		-- dap.listeners.before.event_exited.dapui_config = function()
+		-- 	dapui.close({})
+		-- 	dap.repl.close()
+		-- end
+		-- n
 
 		-- set a vim motion for <Space> + d + t to toggle a breakpoint at the line where the cursor is currently on
 		vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "[D]ebug [T]oggle Breakpoint" })
