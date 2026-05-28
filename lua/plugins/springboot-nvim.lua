@@ -1,6 +1,7 @@
 -- 這個檔案是用來設定 springboot-nvim 插件的，這個插件提供了在 Neovim 中開發 Spring Boot 項目的功能。
 return {
 	"elmcgill/springboot-nvim",
+	ft = { "java" },
 	dependencies = {
 		"neovim/nvim-lspconfig",
 		"mfussenegger/nvim-jdtls",

@@ -30,8 +30,8 @@ return {
     for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
       local server_config = { capabilities = capabilities }
       
-       -- jdtld 由 nvim-jdtls 管理，不使用 nvim-lspconfig 設定
-      if server == "jdtld" then goto continue end
+       -- jdtls 由 nvim-jdtls 管理，不使用 nvim-lspconfig 設定
+      if server == "jdtls" then goto continue end
 
       -- 如果是 clangd，加入特定參數並設定 on_new_config 以處理 compile_commands.json 的變化
       if server == "clangd" then
