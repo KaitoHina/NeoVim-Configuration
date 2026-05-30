@@ -171,7 +171,11 @@ Neovim 的代碼補全引擎。
 | `<leader>cf`| 格式化檔案 (Format) |
 | `<leader>cr`| 列出所有引用 (References) |
 | `<leader>ci`| 列出所有實作 (Implementations) |
-| `<leader>pr`| 重啟 LSP |
+| `<leader>pe` | 啟用 LSP |
+| `<leader>pd` | 停用 LSP |
+| `<leader>ps` | 開啟 LSP |
+| `<leader>pr` | 重啟 LSP |
+| `<leader>Dt` | 切換顯示診斷訊息 |
 | `<leader>Di` | 顯示行內診斷訊息 (Line Diagnostics) |
 | `<leader>D[` / `<leader>D]` | 移至上一個/下一個診斷訊息 ( Prev/Next Diagnostic ) |
 

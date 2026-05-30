@@ -99,12 +99,31 @@ return {
     -- 設定 Vim 快速鍵: 格式化當前文件
     keymap.set("n", "<leader>cf", function() vim.lsp.buf.format({ async = true }) end, { desc = "[C]ode [F]ormat" })
 
+    -- 設定 Vim 快速鍵: 啟用 LSP 伺服器
+    keymap.set("n", "<leader>pe", "<cmd>lsp enable<CR>", { desc = "Ls[p] [e]nable" })
+
+    -- 設定 Vim 快速鍵: 停止 LSP 伺服器
+    keymap.set("n", "<leader>pd", "<cmd>lsp disable<CR>", { desc = "Ls[p] [d]isable" })
+
+    -- 設定 Vim 快速鍵: 停止 LSP 伺服器 (當檔案卡住或 compile_commands.json 更新但沒反應時使用)
+    keymap.set("n", "<leader>ps", "<cmd>lsp stop<CR>", { desc = "Ls[p] [s]top" })
+
     -- 設定 Vim 快速鍵: 重啟 LSP 伺服器 (當檔案卡住或 compile_commands.json 更新但沒反應時使用)
-    keymap.set("n", "<leader>pr", "<cmd>lsp restart<CR>", { desc = "Lsp [r]estart" })
+    keymap.set("n", "<leader>pr", "<cmd>lsp restart<CR>", { desc = "Ls[p] [r]estart" })
 
     -- 診斷與格式化
     keymap.set("n", "<leader>Di", vim.diagnostic.open_float, { desc = "Open [D]iagnostics [I]nfo" })
     keymap.set("n", "<leader>D[", vim.diagnostic.goto_prev, { desc = "Prev [D]iagnostic" })
     keymap.set("n", "<leader>D]", vim.diagnostic.goto_next, { desc = "Next [D]iagnostic" })
+    local function toggle_all_diagnostics()
+      if vim.diagnostic.is_enabled() then
+        vim.diagnostic.enable(false)
+        vim.notify("All Diagnostics OFF", "info", { title = "LSP" })
+      else
+        vim.diagnostic.enable(true)
+        vim.notify("All Diagnostics ON", "info", { title = "LSP" })
+      end
+    end
+    vim.keymap.set("n", "<leader>Dt", toggle_all_diagnostics, { desc = "[D]iagnostics [T]oggle All" })
   end
 }
