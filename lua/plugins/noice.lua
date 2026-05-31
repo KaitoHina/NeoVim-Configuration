@@ -3,8 +3,8 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   dependencies = {
-    "MunifTanjim/nui.nvim", -- 必須依賴
-    "rcarriga/nvim-notify", -- 推薦，用於通知美化
+    "MunifTanjim/nui.nvim",  -- 必須依賴
+    "rcarriga/nvim-notify",  -- 推薦，用於通知美化
     "nvim-lua/plenary.nvim", -- 某些功能需要
   },
   opts = {
@@ -30,10 +30,21 @@ return {
     notify = {
       enabled = true, -- 使用 nvim-notify
     },
+    -- 消除 jdtls 驗證文檔彈出視窗
+    routes = {
+      {
+        filter = {
+          event = "lsp",
+          kind = "progress",
+          find = "jdtls",
+        },
+        opts = { skip = true },
+      },
+    },
   },
   -- 可選：新增快捷鍵快速查看訊息歷史
   keys = {
-    { "<leader>nn", "<cmd>Noice<CR>", desc = "Noice History" },
+    { "<leader>nn", "<cmd>Noice<CR>",         desc = "Noice History" },
     { "<leader>nd", "<cmd>Noice dismiss<CR>", desc = "Dismiss All Notifications" },
   },
 }
