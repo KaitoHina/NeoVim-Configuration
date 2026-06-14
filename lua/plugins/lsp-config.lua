@@ -59,12 +59,23 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
-        -- 確認該 LSP 是否支援格式化功能
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        local bufnr = ev.buf
+
+        -- 啟用 inlay hints（如果伺服器支援）
+        if client and client.server_capabilities.inlayHintProvider then
+          vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+          -- 新增一個快捷鍵手動切換 inlay hints
+          vim.keymap.set('n', '<leader>cH', function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+          end, { buffer = bufnr, desc = 'Toggle Inlay Hints' })
+        end
+
+        -- 確認該 LSP 是否支援格式化功能
         if client and client.server_capabilities.documentFormattingProvider then
           -- 當緩衝區被寫入前，呼叫 LSP 的格式化功能，並確保使用正確的 LSP 伺服器（透過 client_id）
           vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = ev.buf,
+            buffer = bufnr,
             callback = function()
               vim.lsp.buf.format({ async = false, id = ev.data.client_id })
             end,

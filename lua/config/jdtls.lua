@@ -55,7 +55,7 @@ local function get_workspace()
   return workspace_dir
 end
 
-local function java_keymaps()
+local function java_keymaps(bufnr)
   -- Allow yourself to run JdtCompile as a Vim command
   vim.cmd(
     "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)")
@@ -277,9 +277,9 @@ local function setup_jdtls()
   }
 
   -- Function that will be ran once the language server is attached
-  local on_attach = function()
+  local on_attach = function(client, bufnr)
     -- Map the Java specific key mappings once the server is attached
-    java_keymaps()
+    java_keymaps(bufnr)
 
     -- Setup the java debug adapter of the JDTLS server
     require("jdtls.dap").setup_dap()
@@ -293,6 +293,21 @@ local function setup_jdtls()
     -- Refresh the codelens
     -- Code lens enables features such as code reference counts, implemenation counts, and more.
     vim.lsp.codelens.enable(true, { bufnr = bufnr })
+
+    local function enable_inlay_hints()
+      if vim.api.nvim_buf_is_valid(bufnr) then
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      end
+    end
+    
+    local function toggle_inlay_hints()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+    end
+
+    vim.schedule(enable_inlay_hints)
+
+    -- Set a Vim motion to <Space> + H to toggle inlay hints
+    vim.keymap.set("n", "<leader>cH", toggle_inlay_hints, { buffer = bufnr, desc = "Toggle Inlay Hints" })
 
     -- Set to automatically format when saving
     vim.api.nvim_create_autocmd("BufWritePre", {

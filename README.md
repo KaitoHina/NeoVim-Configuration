@@ -28,6 +28,12 @@ brew install --cask font-hack-nerd-font
 
 - **圖示 (Icons):** 所有 UI (lualine, bufferline, nvim-tree) 皆已預設強制啟用圖示，無需另外設定變數。請務必安裝 Nerd Fonts。
 - **Java:** Java 專案應為基於 Maven/Gradle 的專案 (含有 `pom.xml` 或 `build.gradle`)。
+- **Java:** Java 專案應為基於 Maven/Gradle 的專案 (含有 `pom.xml` 或 `build.gradle`)。
+- **Inlay Hints (Java):** 本配置會在 JDTLS 完成啟動（ServiceReady）後自動啟用 inlay hints；若沒有自動顯示，可使用 `<leader>cH` 手動切換顯示或重啟 JDTLS。常見排錯步驟：
+  1. 確認 Neovim 版本支援 `vim.lsp.inlay_hint`（建議 Neovim >= 0.10）。
+  2. 重新啟動 JDTLS（重開該專案的 Java 檔或使用 LSP 重新啟動指令）。
+  3. 確認 Mason 安裝的 `jdtls` 為最新版本，或更新相關 Mason 套件。
+  4. 若仍看不到，暫時可在 buffer 內用 `<leader>cH` 手動開啟。
 - **外部依賴:** `ripgrep`, `fd`, `tree-sitter` – 透過 `brew` 安裝。
 - **首次啟動:** 插件會自動安裝。如果安裝失敗，請執行 `:Lazy sync`。
 - **Mason LSP 伺服器:** 其他語言伺服器請透過 `:Mason` 手動安裝。
@@ -172,6 +178,7 @@ Neovim 的代碼補全引擎。
 | `<leader>cf`| 格式化檔案 (Format) |
 | `<leader>cr`| 列出所有引用 (References) |
 | `<leader>ci`| 列出所有實作 (Implementations) |
+| `<leader>cH`| 切換 Inlay Hints (Toggle Inlay Hints) |
 | `<leader>pe` | 啟用 LSP |
 | `<leader>pd` | 停用 LSP |
 | `<leader>ps` | 開啟 LSP |
