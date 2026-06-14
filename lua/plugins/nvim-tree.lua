@@ -22,6 +22,7 @@ return {
 
     -- 圖示設定
     local renderer_config = {
+      group_empty = true, -- 合併空目錄 (例如 Java packages)
       -- 顯示縮排引導線
       indent_markers = { enable = true },
       icons = {
