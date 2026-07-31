@@ -22,6 +22,9 @@ nvim
 
 # 確保已安裝 Nerd Font 並在終端機中使用該字體
 brew install --cask font-hack-nerd-font
+
+# 確保已安裝插件外部依賴
+brew install ripgrep fd tree-sitter
 ```
 
 ## ⚠️ Important Notes (重要注意事項)
