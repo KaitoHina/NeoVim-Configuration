@@ -28,7 +28,25 @@ brew install --cask font-hack-nerd-font
 
 - **圖示 (Icons):** 所有 UI (lualine, bufferline, nvim-tree) 皆已預設強制啟用圖示，無需另外設定變數。請務必安裝 Nerd Fonts。
 - **Java:** Java 專案應為基於 Maven/Gradle 的專案 (含有 `pom.xml` 或 `build.gradle`)。
-- **Java:** Java 專案應為基於 Maven/Gradle 的專案 (含有 `pom.xml` 或 `build.gradle`)。
+- **Java (Google Style):** 若需使用 Google Java Style 格式化，請先下載 style 設定檔：
+
+  ```bash
+  mkdir -p ~/.config/nvim/lang_servers
+  curl -o ~/.config/nvim/lang_servers/intellij-java-google-style.xml https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml
+  ```
+
+  > 如果未下載此檔案，JDTLS 啟動時會出現 `watch.watch: ENOENT` 錯誤，因為 JDTLS 的 file watcher 無法找到此路徑。
+  >
+  > 若不想使用 Google Style，可將 `lua/config/jdtls.lua` 中第 181-185 行的區塊註解或刪除，讓 JDTLS 使用預設的 Eclipse 格式：
+  >
+  > ```lua
+  > -- Use the Google Style guide for code formatting
+  > settings = {
+  >   url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
+  >   profile = "GoogleStyle",
+  > },
+  > ```
+
 - **Inlay Hints (Java):** 本配置會在 JDTLS 完成啟動（ServiceReady）後自動啟用 inlay hints；若沒有自動顯示，可使用 `<leader>cH` 手動切換顯示或重啟 JDTLS。常見排錯步驟：
   1. 確認 Neovim 版本支援 `vim.lsp.inlay_hint`（建議 Neovim >= 0.10）。
   2. 重新啟動 JDTLS（重開該專案的 Java 檔或使用 LSP 重新啟動指令）。
