@@ -89,6 +89,12 @@ brew install ripgrep fd tree-sitter
 | `Ctrl l` | 切換到下一個 Buffer | 類似瀏覽器標籤頁的右側切換 |
 | `Tab` | 向右縮排 | 保留原始排版快速縮排 |
 | `Shift Tab` | 向左縮排 | 保留原始排版快速縮排 |
+| `Shift A` | 在行尾附加文字 |
+| `Shift I` | 在行首插入文字 |
+| `Shift S` | 清除整行並開始輸入 |
+| `{` / `}` | 跳至上/下一段（空白行分隔） | |
+| `gg` / `G` | 跳至檔頭 / 檔尾 | |
+| `%` | 跳至對應括號 | |
 
 ### 3. Visual Mode
 
