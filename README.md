@@ -176,6 +176,16 @@ Neovim 的檔案總管樹狀視圖。
 
 > `which-key` 也會自動整理這些分組提示：`<leader>/`, `<leader>c`, `<leader>d`, `<leader>e`, `<leader>f`, `<leader>g`, `<leader>J`, `<leader>C`, `<leader>w`。
 
+### 6. Dropbar (`dropbar.lua`)
+
+在 winbar（視窗頂部）顯示檔案路徑與 LSP 符號的麵包屑導航。
+
+| 操作     | 功能                                 |
+|----------|--------------------------------------|
+| 點擊符號 | 彈出下拉選單（hover 不預覽檔案內容） |
+
+> 需 Neovim >= 0.11。
+
 ## ⌨️ Coding & Intellisense (程式碼編寫與智慧提示)
 
 ### 1. Nvim-Cmp (`cmp.lua`)
