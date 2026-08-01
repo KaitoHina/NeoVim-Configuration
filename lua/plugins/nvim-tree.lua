@@ -45,6 +45,11 @@ return {
           global = true, -- 全局切換目錄
         },
       },
+      filters = {
+        dotfiles = false,          -- 顯示 dotfiles
+        git_ignored = false,       -- 顯示被 gitignore 的 files
+        custom = { "^\\.git$" },   -- 仍然隱藏 .git 本身
+      },
       auto_reload_on_write = true, -- 寫入檔案後自動重新載入
       on_attach = my_on_attach,    -- 使用自訂的 on_attach 函式
       renderer = renderer_config   -- 使用自訂的圖示設定
@@ -58,4 +63,3 @@ return {
     -- })
   end
 }
-

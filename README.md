@@ -137,6 +137,9 @@ Neovim 的檔案總管樹狀視圖。
 | `<leader>[` | 將目前目錄的父目錄設為根目錄 |
 | `<leader>]` | 將遊標所在目錄設為根目錄 |
 | `I` | 切換 Git 忽略檔案的顯示與隱藏 |
+| `H` | 切換顯示隱藏文件 |
+
+> 預設已顯示被 Git 忽略的檔案與隱藏文件（`filters.git_ignored = false`、`dotfiles = false`），可用 `I` / `H` 即時切換。
 
 ### 2. Telescope (`telescope.lua`)
 高度可擴展且極速的模糊搜尋工具。
