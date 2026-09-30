@@ -7,8 +7,7 @@ return {
       require("mason").setup()
     end
   },
-
-   -- mason-lspconfig: 橋接 Mason 和 lspconfig
+  -- mason-lspconfig: 橋接 Mason 和 lspconfig
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
@@ -45,11 +44,27 @@ return {
         ensure_installed = {
           "python",             -- Python: debugpy
           "codelldb",           -- C / C++
-          "java-debug-adapter", -- Java 調試
-          "java-test",          -- Java 測試
+          -- "java-debug-adapter", -- Java 調試
+          -- "java-test",          -- Java 測試
         },
         handlers = {},
       })
     end
   },
+  -- mason-tool-installer: 使用 Mason 安裝和管理其他工具
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    opts = {
+      ensure_installed = {
+        -- 指定要安裝的工具列表
+        "java-debug-adapter",
+        "java-test",
+      },
+      -- 在啟動時自動運行安裝
+      run_on_start = true,
+      -- 在啟動時自動更新已安裝的工具
+      auto_update = true,
+    },
+  }
 }
