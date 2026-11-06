@@ -175,14 +175,10 @@ local function setup_jdtls()
   -- Configure settings in the JDTLS server
   local settings = {
     java = {
-      -- Enable code formatting
+      -- 格式化交給 conform.nvim + google-java-format
+      -- （原本的 intellij-java-google-style.xml 是 IntelliJ 格式，JDT-LS 讀不懂）
       format = {
-        enabled = true,
-        -- Use the Google Style guide for code formatting
-        settings = {
-          url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
-          profile = "GoogleStyle",
-        },
+        enabled = false,
       },
       -- Enable downloading archives from eclipse automatically
       eclipse = {
@@ -310,10 +306,7 @@ local function setup_jdtls()
     vim.keymap.set("n", "<leader>cH", toggle_inlay_hints, { buffer = bufnr, desc = "Toggle Inlay Hints" })
 
     -- Set to automatically format when saving
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function() vim.lsp.buf.format({ bufnr = bufnr }) end,
-    })
+    -- Java 改用 conform.nvim + google-java-format，這裡不再註冊 BufWritePre
   end
 
   -- Create the configuration table for the start or attach function

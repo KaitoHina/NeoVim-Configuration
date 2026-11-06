@@ -60,6 +60,7 @@ return {
         -- 指定要安裝的工具列表
         "java-debug-adapter",
         "java-test",
+        "google-java-format", -- Java 格式化
       },
       -- 在啟動時自動運行安裝
       run_on_start = true,

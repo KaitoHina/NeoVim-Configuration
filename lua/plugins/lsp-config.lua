@@ -72,7 +72,12 @@ return {
         end
 
         -- 確認該 LSP 是否支援格式化功能
-        if client and client.server_capabilities.documentFormattingProvider then
+        -- （Java 交給 conform.nvim + google-java-format，避免兩套格式化打架）
+        if
+          client
+          and client.server_capabilities.documentFormattingProvider
+          and vim.bo[bufnr].filetype ~= "java"
+        then
           -- 當緩衝區被寫入前，呼叫 LSP 的格式化功能，並確保使用正確的 LSP 伺服器（透過 client_id）
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
@@ -108,7 +113,13 @@ return {
     keymap.set("n", "<leader>cD", vim.lsp.buf.declaration, { desc = "[C]ode Goto [D]eclaration" })
 
     -- 設定 Vim 快速鍵: 格式化當前文件
-    keymap.set("n", "<leader>cf", function() vim.lsp.buf.format({ async = true }) end, { desc = "[C]ode [F]ormat" })
+    keymap.set("n", "<leader>cf", function()
+      if vim.bo.filetype == "java" then
+        require("conform").format({ async = true })
+      else
+        vim.lsp.buf.format({ async = true })
+      end
+    end, { desc = "[C]ode [F]ormat" })
 
     -- 設定 Vim 快速鍵: 啟用 LSP 伺服器
     keymap.set("n", "<leader>pe", "<cmd>lsp enable<CR>", { desc = "Ls[p] [e]nable" })
