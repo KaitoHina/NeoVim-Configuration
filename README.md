@@ -15,16 +15,16 @@ rm -rf ~/.local/state/nvim
 rm -rf ~/.cache/nvim   # optional
 
 # 複製此儲存庫
-git clone https://github.com/your-username/your-repo.git ~/.config/nvim
-
-# 啟動 Neovim – 插件將自動安裝
-nvim
+git clone https://github.com/KaitoHina/NeoVim-Configuration.git ~/.config/nvim
 
 # 確保已安裝 Nerd Font 並在終端機中使用該字體
 brew install --cask font-hack-nerd-font
 
 # 確保已安裝插件外部依賴
 brew install ripgrep fd tree-sitter
+
+# 啟動 Neovim – 插件將自動安裝
+nvim
 ```
 
 ## ⚠️ Important Notes (重要注意事項)
@@ -47,7 +47,7 @@ brew install ripgrep fd tree-sitter
 
 ---
 
-# Neovim Plugins & Keymaps Guide (插件與快捷鍵指南)
+## Neovim Plugins & Keymaps Guide (插件與快捷鍵指南)
 
 本區塊提供 `lua/plugins` 目錄下已安裝之 Neovim 插件的概覽。
 
